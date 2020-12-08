@@ -7,19 +7,27 @@
 
 package com.adp3.factory.reports;
 
+
 import com.adp3.entity.reports.StoreReports;
-import com.adp3.util.GenericHelper;
+
 
 public class StoreReportFactory {
 
+    private static StoreReports storeReports = null;
 
+    private StoreReportFactory(){
+    }
+    /*method used to create a new StoreReports
+     * @param: empID, storeID, timeServiceID
+     * @return: employeeReport per Store
+     * */
 
     public static StoreReports createStoreReports(String empID, String storeID, String timeServiceID){
-        String reportID = GenericHelper.generateID();
-        return new StoreReports.Builder()
-                .setStoreReportID(reportID)
-                .setEmpID(empID).setStoreID(storeID).setTimeServiceID(timeServiceID)
-                .build();
+                return new StoreReports.Builder()
+                        .setEmpID(empID)
+                        .setStoreID(storeID)
+                        .setTimeServiceID(timeServiceID)
+                        .build();
 
     }
 }

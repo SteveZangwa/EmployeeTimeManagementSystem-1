@@ -13,23 +13,28 @@ import java.io.Serializable;
 
 @Entity
 public class StoreReports implements Serializable {
+
     @Id
-    private String storeReportID;
-    private String empID, storeID, timeServiceID;
+       private String empID, storeID, timeServiceID;
+
+    protected StoreReports() {
+    }
 
     public StoreReports(Builder builder) {
-        this.storeReportID = builder.storeReportID;
         this.empID = builder.empID;
         this.storeID = builder.storeID;
         this.timeServiceID = builder.timeServiceID;
     }
 
-    protected StoreReports() {
+    @Override
+    public String toString() {
+        return "StoreReports{" +
+                "empID='" + empID + '\'' +
+                ", storeID='" + storeID + '\'' +
+                ", timeServiceID='" + timeServiceID + '\'' +
+                '}';
     }
 
-    public String getStoreReportID() {
-        return storeReportID;
-    }
 
     public String getEmpID() { return empID; }
 
@@ -37,22 +42,9 @@ public class StoreReports implements Serializable {
 
     public String getTimeServiceID() { return timeServiceID; }
 
-    @Override
-    public String toString() {
-        return "Store_Reports{" +
-                "StoreReportID='" + storeReportID + '\'' +
-                ", EmployeeID='" + empID + '\'' +
-                ", StoreID='" + storeID + '\'' +
-                '}';
-    }
 
     public static class Builder {
-        private String storeReportID, empID, storeID, timeServiceID;
-
-        public Builder setStoreReportID(String storeReportID) {
-            this.storeReportID = storeReportID;
-            return this;
-        }
+        private String empID, storeID, timeServiceID;
 
         public Builder setEmpID(String empID) {
             this.empID = empID;
@@ -69,19 +61,15 @@ public class StoreReports implements Serializable {
             return this;
         }
 
-        public StoreReports build() {
-            return new StoreReports(this);
-        }
 
-        public Builder copy(StoreReports storeReports) {
-            this.storeReportID = storeReports.storeReportID;
+         public Builder copy(StoreReports storeReports) {
             this.empID = storeReports.empID;
             this.storeID = storeReports.storeID;
             this.timeServiceID = storeReports.timeServiceID;
             return this;
         }
 
-
+        public StoreReports build() { return new StoreReports(this);   }
     }
 
 
